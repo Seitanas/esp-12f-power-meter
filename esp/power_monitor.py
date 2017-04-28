@@ -33,7 +33,7 @@ def http_get(url):
         addr = socket.getaddrinfo(host, 80)[0][-1]
         s = socket.socket()
         s.connect(addr)
-        s.send(bytes('GET /%s HTTP/1.0\r\nHost: %s\r\nUser-Agent: https://github.com/Seitanas/\r\n\r\n' % (path, host), 'utf8'))
+        s.send(bytes('GET /%s HTTP/1.0\r\nHost: %s\r\nUser-Agent: https://github.com/Seitanas/esp-12f-power-meter/\r\n\r\n' % (path, host), 'utf8'))
         while True:
             data = s.recv(100)
             if data:
