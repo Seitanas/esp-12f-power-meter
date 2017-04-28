@@ -1,0 +1,14 @@
+a.editable-empty {
+  color: gray;
+  font-style: italic;
+  border-bottom: none;
+}
+a.editable-click {
+  color: gray;
+  border-bottom: none;
+}
+a.editable-click:hover {
+  color: gray;
+  border-bottom: none;
+}
+
