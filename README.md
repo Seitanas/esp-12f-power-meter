@@ -24,9 +24,9 @@ After esp module is powered on, it should start sending data to your portal.
 ##Some screenshots:  
   
   
-[[img/screenshot1.png]]
-[[img/img1.jpg]]
-[[img/img2.jpg]]
-[[img/img3.jpg]]
-[[img/img4.jpg]]
-[[img/img5.jpg]]
+![alt text](https://raw.githubusercontent.com/Seitanas/esp-12f-power-meter/master/img/screenshot1.png)  
+![alt text](https://raw.githubusercontent.com/Seitanas/esp-12f-power-meter/master/img/img1.jpg)  
+![alt text](https://raw.githubusercontent.com/Seitanas/esp-12f-power-meter/master/img/img2.jpg)  
+![alt text](https://raw.githubusercontent.com/Seitanas/esp-12f-power-meter/master/img/img3.jpg)  
+![alt text](https://raw.githubusercontent.com/Seitanas/esp-12f-power-meter/master/img/img4.jpg)  
+![alt text](https://raw.githubusercontent.com/Seitanas/esp-12f-power-meter/master/img/img5.jpg)  
