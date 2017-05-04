@@ -9,6 +9,8 @@ $reply = get_SQL_array("SELECT * FROM config");
 $sensor_config = array();
 foreach ($reply as $value)
     $sensor_config[$value['name']] = $value['value'];
+if (!$sensor_config['total-name'])
+    $sensor_config['total-name']='Total';
 ?>
 <html>
 <head>
@@ -81,11 +83,9 @@ foreach ($reply as $value)
             <div class="col-md-3"></div>
         </div>
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-
+			<div class="col-md-12">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="panel panel-info">
 							<div class="panel-heading">
                                 <h4 id="sensor1-text">
@@ -106,7 +106,7 @@ foreach ($reply as $value)
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="panel panel-success">
 							<div class="panel-heading">
 								<h4 id="sensor2-text">
@@ -127,7 +127,7 @@ foreach ($reply as $value)
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="panel panel-warning">
 							<div class="panel-heading">
 								<h4 id="sensor3-text">
@@ -148,9 +148,29 @@ foreach ($reply as $value)
 							</div>
 						</div>
 					</div>
+					<div class="col-md-3">
+						<div class="panel panel-warning">
+							<div class="panel-heading">
+								<h4 id="total-text">
+                                    <a id="total-name" class="editable editable-pre-wrapped editable-click sensor-name" data-pk="13" data-type="text" href="#"><?php echo $sensor_config['total-name'];?></a>
+                                    <i class="fa fa-spinner fa-pulse fa-1x fa-fw text-warning kwh-total-spinner"></i>
+                                </h4>
+							</div>
+							<div class="panel-body">
+								<p>
+                                    <h5 class="text-center">
+                                        <small>
+                                            <a id="total-description" class="editable editable-pre-wrapped editable-click sensor-description" data-pk="3" data-type="textarea" href="#"><?php echo $sensor_config['total-description'];?></a>
+                                        </small>
+                                    </h5>
+                                </p>
+								<p><h1 class="text-center" id="total"></h1></p>
+								<p><h5 class="text-center"><small id="total-period"></small></h5></p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-2"></div>
 		</div>
 		<div class="row">	
 			<div class="col-md-1"></div>

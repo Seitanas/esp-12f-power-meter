@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $("#refresh").click(function(){
         date_slider();
+       // loadTotalkWhData('none');
     });
 
     $.fn.editable.defaults.mode = 'popup';
@@ -41,10 +42,16 @@ $(document).ready(function(){
                 data: 0,
                 pointRadius: 0,
                 backgroundColor: 'rgba(250, 243, 210, 0.3)',
+            },{
+                label: $("#total-name").val(),
+                data: 0,
+                pointRadius: 0,
+                backgroundColor: 'rgba(250, 243, 210, 0.3)',
             },]
         },
     });
     date_slider();
+  //  loadTotalkWhData('none');
 
 function date_slider(){
     var date_values = [];
@@ -130,13 +137,13 @@ function hour_slider(start_date, end_date){
                         min: 0,
                         max: hour_values.length - 1,
                         step: 1,
-                        values: [ 0, hour_values.length -1 ],
+                        values: [ 0, hour_values.length - 1 ],
                         slide: function( event, ui ) {
                             $("#interval-value").html( hour_values[ui.values[0]] + ":00 - " + hour_values[ui.values[1]] + ":59");
                         },
                         stop: function( event, ui ) {
-                            loadkWhdata( hour_values[ui.values[0]] + ":00 - ", hour_values[ui.values[1]] + ":59");
-                            getChartData( hour_values[ui.values[0]] + ":00 - ", hour_values[ui.values[1]] + ":59");
+                            loadkWhdata( hour_values[ui.values[0]] + ":00", hour_values[ui.values[1]] + ":59");
+                            getChartData( hour_values[ui.values[0]] + ":00", hour_values[ui.values[1]] + ":59");
                         },
                     });
                     $("#interval-value").html(hour_values[$("#hour-slider").slider("values", 0)] + ":00 - " + hour_values[$("#hour-slider").slider("values", 1)] + ":59");
@@ -166,6 +173,8 @@ function loadkWhdata(start_date, end_date){
                 $(".kwh-spinner").addClass("hidden");
             }
     });
+    var month = start_date.split("-");
+    loadTotalkWhData(month[0] + "-" + month[1]);
 }
 
 function getChartData(start_date, end_date){
@@ -188,6 +197,34 @@ function getChartData(start_date, end_date){
     });
 }
 
+function loadTotalkWhData(month){
+    $(".kwh-total-spinner").removeClass("hidden");
+    start_date = month;
+    end_date = month;
+    $.post({
+        url : '../infrastructure/kWh.php',
+            data: {
+                start_date: start_date,
+                end_date: end_date,
+                full: 'full',
+            },
+            success:function (data) {
+                var reply=jQuery.parseJSON(data);
+                var total = 0;
+                var from = [];
+                var tp = [];
+	            $.each(reply, function(i, value){
+                    total = total + parseFloat(value['kWh']);
+                    from = value['from'].split(' ');
+                    to = value['to'].split(' ');
+                });
+                $('#total').html(total.toFixed(3) + ' kWh');
+  	            $('#total-period').html(from[0] + ' - ' + to[0]);
+                $(".kwh-total-spinner").addClass("hidden");
+            }
+    });
+
+}
 
 });
 
