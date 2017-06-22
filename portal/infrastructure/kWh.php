@@ -7,17 +7,6 @@ if (!check_session()){
 $start_date = $_POST['start_date'];
 $end_date = $_POST['end_date'];
 $full = $_POST['full'];
-/*if (empty ($from)){
-    $from = date("Y-m-01 00:00:00");
-    $to = date("Y-m-d H:i:s");
-	$data = get_SQL_array("SELECT * FROM data  WHERE DATE(date) <= NOW() AND DATE(date) >= DATE('$from')  ORDER BY id");
-}
-else {
-	if (empty($to))
-		$to = date("Y-m-d H:i:s"); 
-	$data = get_SQL_array("SELECT * FROM data  WHERE date BETWEEN '$from' AND '$to' ORDER BY id");
-}
-*/
 if (!empty($start_date) && !empty($end_date)){
     if (isset($full)) {
         if ($start_date == 'currmonth'){
@@ -26,7 +15,7 @@ if (!empty($start_date) && !empty($end_date)){
         }
         else {
             $start_date = $start_date . "-01 00:00:00";
-            $end_date = date("Y-m-t", strtotime($end_date)) . " 59:59:59";
+            $end_date = date("Y-m-t", strtotime($end_date)) . " 23:59:59";
         }
     }
     $data = get_SQL_array("SELECT * FROM data  WHERE date >= '$start_date' AND date <= '$end_date' ORDER BY id");	
